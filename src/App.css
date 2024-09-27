@@ -1,0 +1,20 @@
+/* App.css */
+.App {
+  /* background: linear-gradient(to bottom right, #B44FB6, #8C2B97 50%, #4fd1f8 40%, #4fd1f8 ); */
+  /* background-image: linear-gradient(to bottom, #add8e6, #9370db); */
+  /* background-image: url('./background1.jpg'); */
+  /* background-image: url('./bg-agld2.jpg');
+  background-size: 100% 100%;
+  min-height: 100vh;
+  width: 100%; */
+  background-color: #fff;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /* color: white; */
+}
