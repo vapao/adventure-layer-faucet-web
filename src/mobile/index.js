@@ -150,6 +150,7 @@ const HomeIndex = () => {
         <div className={styles.mobileMenu}>
           <div className={styles.itemBox}>
           <a className={styles.MobileMenuItem} href={config.faucetUrl} target="_blank" rel="noopener noreferrer">Faucet</a>
+          <a className={styles.MobileMenuItem} href={config.explorerUrl} target="_blank" rel="noopener noreferrer">Explorer</a>
           <a className={styles.MobileMenuItem} href={config.bridgeUrl} target="_blank" rel="noopener noreferrer">Bridge</a>
           <a className={styles.MobileMenuItem} href={config.docsUrl} target="_blank" rel="noopener noreferrer">Doc</a>
           </div>

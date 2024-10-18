@@ -1,5 +1,6 @@
 const config = {
     faucetUrl: "https://faucet-devnet.adventurelayer.xyz",
+    explorerUrl: "https://explorer-devnet.adventurelayer.xyz",
     bridgeUrl: "https://bridge-devnet.adventurelayer.xyz",
     docsUrl: "https://docs.adventurelayer.xyz",
     rpcUrl: "https://rpc-devnet.adventurelayer.xyz",
