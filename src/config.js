@@ -10,9 +10,9 @@ const config = {
 export default config;
 
 export const AdventureLayer = {
-  chainId: 242069,
-  rpcUrl: "https://rpc-devnet.adventurelayer.xyz",
-  wssUrl: "wss://rpc-devnet.adventurelayer.xyz",
-  chainName: 'Adventure Layer L2',
+  chainId: 12340213,
+  rpcUrl: "https://slither-demo.adventurelayer.xyz/shard",
+  wssUrl: "wss://slither-demo.adventurelayer.xyz/shard",
+  chainName: 'dev shard',
   blockExplorerUrl: 'https://explorer.adventurelayer.xyz',
 }
