@@ -3,7 +3,7 @@ import { message } from 'antd';
 
 
 // const API_BASE_URL = "http://3.84.203.161:8502";
-const API_BASE_URL = "https://faucet-devnet.adventurelayer.xyz/";
+const API_BASE_URL = "https://slither-faucet.adventurelayer.xyz/";
 
 
 // 创建axios实例，并设置基础URL
