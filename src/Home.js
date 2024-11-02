@@ -71,6 +71,7 @@ function WalletButton() {
 const HomeIndex = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false)
+  const [tokenFlag, setTokenFlag] = useState(0)
   const [token, setToken] = useState('');
   const [isAddressDisabled, setIsAddressDisabled] = useState(false);
   const [showBalance, setShowBalance] = useState(false);
@@ -109,7 +110,6 @@ const HomeIndex = () => {
       setLoading(false);
       return;
     }
-    setToken(null);
     http.post('/api/sendEth', formData)
       .then(data => {
         setLoading(false);
@@ -127,6 +127,10 @@ const HomeIndex = () => {
           })
         }
       }, () => setLoading(false))
+      .finally(() => {
+        setTokenFlag(tokenFlag + 1)
+        setToken('')
+      });
   }
 
   return (
@@ -188,12 +192,11 @@ const HomeIndex = () => {
                 </Form.Item>
               )}
               <Form.Item>
-                {token ? null : (
                   <Turnstile
-                  sitekey={config.turnstileSiteKey}
-                  onVerify={(token) => setToken(token)}
+                    key={tokenFlag}
+                    sitekey={config.turnstileSiteKey}
+                    onVerify={(token) => setToken(token)}
                 />
-                )}
               </Form.Item>
             </Form>
           </div>
