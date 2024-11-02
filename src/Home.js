@@ -104,15 +104,14 @@ const HomeIndex = () => {
     const formData = form.getFieldsValue();
     formData.token = token;
     setLoading(true);
-    console.log('formData', formData);
     if (!formData.toAddress) {
       message.error('Please input your devnet agld address!');
       setLoading(false);
       return;
     }
+    setToken(null);
     http.post('/api/sendEth', formData)
       .then(data => {
-        console.log('data', data);
         setLoading(false);
         if (data.error) {
           message.error(data.error);
@@ -165,14 +164,20 @@ const HomeIndex = () => {
             <Form form={form} layout="inline" style={{ width: '100%' }}>
               <Form.Item name="toAddress" rules={[{ required: true, message: 'Please input your Devnet AGLD address!' }]}
                 disabled={isAddressDisabled}
-                style={{ width: '480px', height: '44px', color: '#211a12' }}>
+                style={{ width: '450px', height: '44px', color: '#211a12' }}>
               <Input disabled={isAddressDisabled} className={styles.customInput} size="large" placeholder="Enter your Devnet AGLD address" />
               </Form.Item >
 
               <Form.Item style={{ width: "40px" }}>
-                <Button style={{ background: "#f39b4b", fontSize: "16px", fontWeight: "600", color: "#000", border: "1px solid #f39b4b" }} size='large' type="primary" onClick={handleSubmit} loading={loading}>
-                Send Me Devnet AGLD
-                </Button>
+                {token || loading ? (
+                  <Button className={styles.sendBtn} size='large' type="primary" onClick={handleSubmit} loading={loading}>
+                    Send Me Devnet AGLD
+                  </Button>
+                ) : (
+                  <Button disabled style={{background: '#d9d9d9', width: 226}} size='large' type="primary">
+                    Send Me Devnet AGLD
+                  </Button>
+                )}
               </Form.Item>
               {showBalance && (
                 <Form.Item style={{width: "100%"}}>
@@ -183,10 +188,12 @@ const HomeIndex = () => {
                 </Form.Item>
               )}
               <Form.Item>
-                <Turnstile
+                {token ? null : (
+                  <Turnstile
                   sitekey={config.turnstileSiteKey}
                   onVerify={(token) => setToken(token)}
                 />
+                )}
               </Form.Item>
             </Form>
           </div>
