@@ -127,10 +127,6 @@ const HomeIndex = () => {
           })
         }
       }, () => setLoading(false))
-      .finally(() => {
-        setTokenFlag(tokenFlag + 1)
-        setToken('')
-      });
   }
 
   return (
@@ -196,6 +192,10 @@ const HomeIndex = () => {
                     key={tokenFlag}
                     sitekey={config.turnstileSiteKey}
                     onVerify={(token) => setToken(token)}
+                    onExpire={() => {
+                      setTokenFlag(tokenFlag + 1)
+                      setToken('');
+                    }}
                 />
               </Form.Item>
             </Form>
