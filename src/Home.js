@@ -127,6 +127,10 @@ const HomeIndex = () => {
           })
         }
       }, () => setLoading(false))
+      .finally(() => {
+        setToken('');
+        setTokenFlag(tokenFlag + 1);
+      })
   }
 
   return (

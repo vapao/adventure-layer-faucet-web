@@ -148,13 +148,13 @@
 
   .sendBox {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     flex-direction: column;
     margin-top: 16px;
     border: 1px solid #31281f;
     background-color: #31281f;
     border-radius: 8px;
-    height: 103px;
+    height: 176px;
     width: 680px;
     padding: 30px 33px 29px 21px;
     /* opacity: 0.9; */
@@ -162,8 +162,9 @@
     .send {
       display: flex;
       justify-content: space-around;
-      align-items: center;
+      /*align-items: center;*/
       flex-direction: row;
+      height: 110px;
     }
 
     .customInput {
