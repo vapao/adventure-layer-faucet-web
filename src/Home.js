@@ -174,7 +174,7 @@ const HomeIndex = () => {
                     Send Me Devnet AGLD
                   </Button>
                 ) : (
-                  <Button disabled style={{background: '#d9d9d9', width: 226}} size='large' type="primary">
+                  <Button disabled className={styles.sendBtn} style={{opacity: 0.6}} size='large' type="primary">
                     Send Me Devnet AGLD
                   </Button>
                 )}
