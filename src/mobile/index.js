@@ -6,13 +6,14 @@ import Decimal from "decimal.js"
 import { Form, Button, Input, message, Typography } from 'antd';
 import http from '../libs/http';
 import config, { AdventureLayer } from '../config';
-import styles from './index.module.css'; // 导入 CSS 模块
-import Logo1  from '../img/Logo1.svg'; // 导入 SVG 作为组件
-import Logo2  from '../img/Logo2.svg'; // 导入 SVG 作为组件
+import styles from './index.module.css'; // Import CSS module
+import Logo1  from '../img/Logo1.svg'; // Import SVG as component
+import Logo2  from '../img/Logo2.svg'; // Import SVG as component
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 
+// FAQ data for the application
 const faqData = [
   {
     question: 'How do I use this?',
@@ -28,12 +29,16 @@ const faqData = [
   }
 ];
 
+/**
+ * WalletButton component to handle wallet connection and display the connected wallet address.
+ */
 function WalletButton() {
 
   const [rendered, setRendered] = useState("");
   const { ens } = useLookupAddress();
   const { account, activateBrowserWallet, deactivate, error } = useEthers();
 
+  // Update rendered address when account or ENS changes
   useEffect(() => {
     if (ens) {
       setRendered(ens);
@@ -44,6 +49,7 @@ function WalletButton() {
     }
   }, [account, ens, setRendered]);
 
+  // Log error if there is an error connecting the wallet
   useEffect(() => {
     if (error) {
       console.error("Error while connecting wallet:", error.message);
@@ -67,7 +73,9 @@ function WalletButton() {
   );
 }
 
-
+/**
+ * HomeIndex component to render the main page of the application.
+ */
 const HomeIndex = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -81,8 +89,8 @@ const HomeIndex = () => {
   const { ens } = useLookupAddress();
   const [toWeb3, setToWeb3] = useState(new Web3(AdventureLayer.rpcUrl))
 
+  // Update form and balance when account changes
   useEffect(() => {
-    // const formData = form.getFieldsValue();
     if (account) {
       setIsAddressDisabled(true)
       form.setFieldsValue({
@@ -101,6 +109,7 @@ const HomeIndex = () => {
     }
   }, [account, ens, form, toWeb3.eth])
 
+  // Handle form submission
   const handleSubmit = () => {
     const formData = form.getFieldsValue();
     setLoading(true);
@@ -130,6 +139,7 @@ const HomeIndex = () => {
       }, () => setLoading(false))
   }
 
+  // Toggle mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -183,7 +193,6 @@ const HomeIndex = () => {
                 <Input disabled={isAddressDisabled} className={styles.customInput} size="large" placeholder="Enter your devnet agld address" />
               </Form.Item>
               <Form.Item style={{ width: '100%' }} >
-                {/* <Button  className={styles.customSendBtn} style={{ background: "#f39b4b", fontSize: "16px", fontWeight: "600", height: '34px', color: "#000", border: "1px solid #f39b4b" }} size='large' type="primary" onClick={handleSubmit} loading={loading}> */}
                 <div className={styles.customSendBtn}  onClick={handleSubmit} loading={loading}>
                   Send Me Devnet AGLD
                 </div>

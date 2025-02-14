@@ -7,12 +7,15 @@ import { Form, Input, Button, message, Typography } from 'antd';
 import http from './libs/http';
 import Turnstile from 'react-turnstile';
 import config, { AdventureLayer } from './config';
-import styles from './home.module.css'; // 导入 CSS 模块
+import styles from './home.module.css'; // import css module stylesheet as styles
 import Logo1 from './img/Logo1.svg';
 import Logo2 from './img/Logo2.svg';
 
 const { Text } = Typography;
 
+/**
+ * FAQ data for the application
+ */
 const faqData = [
   {
     question: 'How do I use this?',
@@ -28,6 +31,9 @@ const faqData = [
   }
 ];
 
+/**
+ * WalletButton component to connect or disconnect the user's wallet
+ */
 function WalletButton() {
 
   const [rendered, setRendered] = useState("");
@@ -44,6 +50,7 @@ function WalletButton() {
     }
   }, [account, ens, setRendered]);
 
+  // handle errors
   useEffect(() => {
     if (error) {
       console.error("Error while connecting wallet:", error.message);
@@ -68,6 +75,9 @@ function WalletButton() {
   );
 }
 
+/**
+ * HomeIndex component for the main page of the application
+ */
 const HomeIndex = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false)
@@ -81,6 +91,7 @@ const HomeIndex = () => {
   const { ens } = useLookupAddress();
   const [toWeb3, setToWeb3] = useState(new Web3(AdventureLayer.rpcUrl))
 
+   // Update form and balance when account changes
   useEffect(() => {
     // const formData = form.getFieldsValue();
     if (account) {
@@ -101,6 +112,7 @@ const HomeIndex = () => {
     }
   }, [account, ens, form, toWeb3.eth])
 
+  // handle form submit
   const handleSubmit = () => {
     const formData = form.getFieldsValue();
     formData.token = token;

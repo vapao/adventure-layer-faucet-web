@@ -6,13 +6,13 @@ import { message } from 'antd';
 const API_BASE_URL = "https://faucet-devnet.adventurelayer.xyz/";
 
 
-// 创建axios实例，并设置基础URL
+// create axios instance
 const http = axios.create({
     baseURL: API_BASE_URL
   });
 
 
-// response处理
+// response interceptor
 function handleResponse(response) {
   let result;
   console.log('response', response)
@@ -36,7 +36,7 @@ function handleResponse(response) {
 }
 
 
-// 返回拦截器
+// request interceptor
 http.interceptors.response.use(response => {
   return handleResponse(response)
 }, error => {
