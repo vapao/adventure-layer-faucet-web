@@ -4,6 +4,7 @@ import './App.css';
 import HomeIndex from './Home';
 import MobileIndex from './mobile/index';
 
+// Regular expression to check if the user is on a mobile device
 export const isMobile = /Android|iPhone/i.test(navigator.userAgent)
 
 
